@@ -7,7 +7,7 @@ const productData = require('./models/product.model');
 
 const productRoute = require('./routes/product.route');
 
-// const scarpData =require('./db/scrap');
+const scarpData =require('./db/scrap');
 const cors =require('cors');
 
 const app = express();
@@ -27,20 +27,20 @@ app.get('/',(req, res) => {
 
 
   
-// server = async ()=>{
-//     await connect();
-//     await scarpData();
+server = async ()=>{
+    await connect();
+    await scarpData();
 
-//     setInterval( async () =>{
-//         await scrapData();
-//         console.log('data reseted');
-//     },43200*1000);
-// }
+    setInterval( async () =>{
+        await scrapData();
+        console.log('data reseted');
+    },43200*1000);
+}
 
-// app.use((res,req,next) => {
-//     console.log('logging middlware');
-//     next();
-// });
+app.use((res,req,next) => {
+    console.log('logging middlware');
+    next();
+});
 
 //product routers
 app.use('/api/product', productRoute);
@@ -51,4 +51,4 @@ app.listen(PORT,()=>{
     console.log(`App running on port ${PORT}`);
 })
 
-// server();
+server();
