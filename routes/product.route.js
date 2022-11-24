@@ -14,43 +14,43 @@ route.get('/',(request,response)=>{
 })
 
 //add new product
-route.post('/mobiles', async (req, res) => {
-    try{
-        const payload = req.body;
+// route.post('/mobiles', async (req, res) => {
+//     try{
+//         const payload = req.body;
 
-        const newMobile = new productData(payload);
+//         const newMobile = new productData(payload);
 
-        await newMobile.save((err, data)=> {
-            if(err){
-                return res.status(400).send({message: 'Error while adding new Mobile details. Please check the data'});
-            }
-            res.status(201).send({mobileId: data._id, message: "Mobile has been added successfully." })
-        })
+//         await newMobile.save((err, data)=> {
+//             if(err){
+//                 return res.status(400).send({message: 'Error while adding new Mobile details. Please check the data'});
+//             }
+//             res.status(201).send({mobileId: data._id, message: "Mobile has been added successfully." })
+//         })
 
-    }catch(error){
-        res.status(500).send({
-            message: "Internal Server Error"
-        })
-    }
-});
+//     }catch(error){
+//         res.status(500).send({
+//             message: "Internal Server Error"
+//         })
+//     }
+// });
 
 //show details
-route.put('/mobiles/:mobID', (req, res) => {
-    try{
-        productData.findByIdAndUpdate({_id: req.params.mobID}, {$set: req.body}, (err, data) =>{
-            if(err){
-                return res.status(400).send({message: 'Error while updating an existing user. Please check the data'})
-            }
+// route.put('/mobiles/:mobID', (req, res) => {
+//     try{
+//         productData.findByIdAndUpdate({_id: req.params.mobID}, {$set: req.body}, (err, data) =>{
+//             if(err){
+//                 return res.status(400).send({message: 'Error while updating an existing user. Please check the data'})
+//             }
 
-            res.status(201).send({mobileId: data._id, message: "Mobiles details have been updated."})
-        })
+//             res.status(201).send({mobileId: data._id, message: "Mobiles details have been updated."})
+//         })
 
-    }catch(error){
-        res.status(500).send({
-            message: "Internal Server Error"
-        })
-    }
-});
+//     }catch(error){
+//         res.status(500).send({
+//             message: "Internal Server Error"
+//         })
+//     }
+// });
 //details
 route.get('/mobiles', (req, res) => {
     try {
@@ -91,21 +91,21 @@ route.get('/mobiles', (req, res) => {
   });
   
   //delete product with id
-  route.delete('/mobiles/:mobID', (req, res) => {
-    try{
-        productData.deleteOne({_id: req.params.mobID}, (err, data) => {
-            if(err){
-                return res.status(400).send('Error while deleting an mobile det. Please check the data');
-            }
+//   route.delete('/mobiles/:mobID', (req, res) => {
+//     try{
+//         productData.deleteOne({_id: req.params.mobID}, (err, data) => {
+//             if(err){
+//                 return res.status(400).send('Error while deleting an mobile det. Please check the data');
+//             }
 
-            res.status(200).send({message : `Mobile with id ${req.params.mobID} has been deleted.`})
-        })
-    }catch(error){
-        res.status(500).send({
-            message: "Internal Server Error"
-        })
-    }
-});
+//             res.status(200).send({message : `Mobile with id ${req.params.mobID} has been deleted.`})
+//         })
+//     }catch(error){
+//         res.status(500).send({
+//             message: "Internal Server Error"
+//         })
+//     }
+// });
    
 
 module.exports = route;
